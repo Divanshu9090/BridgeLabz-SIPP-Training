@@ -1,5 +1,4 @@
 import java.util.Scanner;
-
 class PowerOfNumber {
     public static void main(String[] args) {
         // Create a Scanner object
