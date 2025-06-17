@@ -22,7 +22,7 @@ public class ReverseNumber {
         temp = number;
 
         // Save the digits in the array
-        for (int i = count - 1; i >= 0; i--) {
+        for (int i = 0; i < count; i++) {
             digits[i] = temp % 10;
             temp /= 10;
         }
