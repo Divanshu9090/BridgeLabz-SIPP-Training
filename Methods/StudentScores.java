@@ -57,16 +57,34 @@ public class StudentScores {
     // Method to display the scorecard
     public static void displayScorecard(int[][] scores, double[][] results) {
         System.out.println("Scorecard:");
+        System.out.println("Student\tPhysics\tChemistry\tMath\tTotal\tAverage\tPercentage\tGrade");
         for (int i = 0; i < scores.length; i++) {
-            System.out.println("Student " + (i + 1) + ":");
-            System.out.println("Physics: " + scores[i][0]);
-            System.out.println("Chemistry: " + scores[i][1]);
-            System.out.println("Math: " + scores[i][2]);
-            System.out.println("Total: " + results[i][0]);
-            System.out.println("Average: " + results[i][1]);
-            System.out.println("Percentage: " + results[i][2] + "%");
-            System.out.println();
+            String grade = getGrade(results[i][2]);
+            System.out.printf("%d\t%d\t%d\t%d\t%.2f\t%.2f\t%.2f%%\t%s\n",
+                    i + 1,
+                    scores[i][0],
+                    scores[i][1],
+                    scores[i][2],
+                    results[i][0],
+                    results[i][1],
+                    results[i][2],
+                    grade);
         }
+    }
+
+    public static String getGrade(double percentage) {
+        if (percentage >= 80)
+            return "A";
+        else if (percentage >= 70)
+            return "B";
+        else if (percentage >= 60)
+            return "C";
+        else if (percentage >= 50)
+            return "D";
+        else if (percentage >= 40)
+            return "E";
+        else
+            return "R";
     }
 
 }
