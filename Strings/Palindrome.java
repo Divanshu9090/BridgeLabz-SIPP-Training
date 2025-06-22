@@ -23,7 +23,7 @@ public class Palindrome {
 		//Take a user input
 		String str = input.nextLine();
 		
-		//  Reverse String and Display it;
+		//  check String is palindrome or not and Display it;
 		boolean res = checkPalindrome(str);
 		if(res) {
 			System.out.println(str +" is Palindrome!");
