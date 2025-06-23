@@ -1,7 +1,7 @@
 package com.bridgelab_oops.level2;
 
 public class BankAccount {
-    // BankAccount class to represent a bank account with basic operations
+    // Attributes of the BankAccount class
     private String accountHolder;
     private String accountNumber;
     private double balance;
