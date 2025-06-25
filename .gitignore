@@ -6,8 +6,10 @@ Arrays/*.class
 Methods/*.class
 Strings/*.class
 Built_In_Functions/*.class
-bin
+
+// Eclipse files
+/bin/
 .classpath
 .project
 .settings
-bin
+org.eclipse.ltk.core.refactoring.prefs
