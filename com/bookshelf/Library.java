@@ -3,7 +3,7 @@ package com.bookshelf;
 import java.util.HashMap;
 
 public class Library extends LibraryOrganizer{
-	public static HashMap<String,Book> map;
+	public HashMap<String,Book> map;
 	public Library() {
 		map = new HashMap<>();
 	}
