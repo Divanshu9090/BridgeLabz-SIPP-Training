@@ -1,0 +1,57 @@
+CLASS Pet
+	ATTRIBUTE name
+	ATTRIBUTE age
+	ATTRIBUTE breed 
+	
+	CONSTRUCTOR Pet(name,age,breed)
+		SET this.name = name
+		SET this.age = age
+		SET this.breed = breed
+		
+	METHOD displayInfo()
+		PRINT "Name: " + name
+		PRINT "Age: " + age
+		PRINT "Breed: " + breed
+		
+CLASS Bird EXTENDS Pet
+	ATTRIBUTE canTalk
+	
+	CONSTRUCTOR Bird(name,age,breed,canTalk)
+		CALL super(name,age,breed)
+		SET this.canTalk = canTalk
+		
+	METHOD displayInfo()
+		CALL super.displayInfo()
+		PRINT "Can Talk: " + canTalk
+		
+CLASS Cat EXTENDS Pet
+	ATTRIBUTE isIndoor
+	
+	CONSTRUCTOR Cat(name,age,breed,isIndoor)
+		CALL super(name,age,breed)
+		SET this.isIndoor = isIndoor
+		
+	METHOD displayInfo()
+		CALL super.displayInfo()
+		PRINT "Indoor: " + isIndoor
+		
+CLASS Dog EXTENDS Pet
+	ATTRIBUTE isIndoor
+	
+	CONSTRUCTOR Dog(name,age,breed,isIndoor)
+		CALL super(name,age,breed)
+		SET this.isIndoor = isIndoor
+		
+	METHOD displayInfo()
+		CALL super.displayInfo()
+		PRINT "Indoor: " + isIndoor
+		
+CLASS Main
+	METHOD main()
+		CREATE dog1 = Dog("Kutta",3,"Labrador",true)
+		CREATE bird1 = Bird("Toota", 1, "Parrot",true)
+		CREATE cat1 = Cat("Billie" 2, "parsion", false)
+		
+		CALL dog1.displayInfo()
+		CALL cat1.displayInfo()
+		CALL bird1.displayInfo()
