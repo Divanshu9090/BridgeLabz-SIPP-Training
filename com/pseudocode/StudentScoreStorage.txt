@@ -1,0 +1,28 @@
+CLASS StudentScoreManager
+    ATTRIBUTE scoresMap   // HashMap<String, Integer>
+
+    CONSTRUCTOR()
+        CREATE this.scoresMap as new HashMap
+
+    METHOD addScore(name, marks)
+        SET this.scoresMap[name] = marks
+
+    METHOD displayHighestScorer()
+        SET highestName = ""
+        SET highestMarks = -1
+
+        FOR EACH entry IN this.scoresMap DO
+            IF entry.value > highestMarks THEN
+                SET highestMarks = entry.value
+                SET highestName = entry.key
+
+        PRINT "Top Scorer: " + highestName + " with " + highestMarks + " marks"
+
+CLASS Main
+    METHOD main()
+        CREATE manager = StudentScoreManager()
+        CALL manager.addScore("Anu", 86)
+        CALL manager.addScore("Ravi", 91)
+        CALL manager.addScore("Meera", 79)
+        CALL manager.addScore("Raghav", 95)
+        CALL manager.displayHighestScorer()
