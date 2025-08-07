@@ -1,0 +1,39 @@
+CLASS CallCenter
+    ATTRIBUTE normalQueue
+    ATTRIBUTE emergencyQueue
+
+    CONSTRUCTOR()
+        CREATE this.normalQueue as new Queue
+        CREATE this.emergencyQueue as new Queue
+
+    METHOD addCustomer(name, isEmergency)
+        IF isEmergency == TRUE THEN
+            ENQUEUE name TO this.emergencyQueue
+        ELSE
+            ENQUEUE name TO this.normalQueue
+
+    METHOD serveCustomer()
+        IF emergencyQueue is NOT EMPTY THEN
+            SET customer = DEQUEUE FROM emergencyQueue
+            PRINT "Serving Emergency Customer: " + customer
+        ELSE IF normalQueue is NOT EMPTY THEN
+            SET customer = DEQUEUE FROM normalQueue
+            PRINT "Serving Normal Customer: " + customer
+        ELSE
+            PRINT "No customers in queue"
+
+    METHOD displayQueues()
+        PRINT "Emergency Queue: " + this.emergencyQueue
+        PRINT "Normal Queue: " + this.normalQueue
+
+CLASS Main
+    METHOD main()
+        CREATE center = CallCenter()
+        CALL center.addCustomer("Divanshu", FALSE)
+        CALL center.addCustomer("Anubhav", TRUE)
+        CALL center.addCustomer("Ayush", FALSE)
+        CALL center.displayQueues()
+        CALL center.serveCustomer()
+        CALL center.serveCustomer()
+        CALL center.serveCustomer()
+        CALL center.serveCustomer()

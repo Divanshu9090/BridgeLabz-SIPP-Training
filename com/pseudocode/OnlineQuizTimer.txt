@@ -1,0 +1,27 @@
+CLASS QuizTimer
+    ATTRIBUTE timeSlots
+    ATTRIBUTE currentIndex
+    ATTRIBUTE totalQuestions
+    ATTRIBUTE warningThreshold
+
+    CONSTRUCTOR(slots)
+        SET this.timeSlots = slots
+        SET this.totalQuestions = LENGTH of slots
+        SET this.currentIndex = 0
+        SET this.warningThreshold = 5
+
+    METHOD startQuiz()
+        FOR i FROM 1 TO totalQuestions DO
+            SET time = this.timeSlots[this.currentIndex]
+            PRINT "Question " + (this.currentIndex + 1)
+            FOR t FROM time DOWNTO 1 DO
+                IF t == this.warningThreshold THEN
+                    PRINT "Warning: Only " + t + " seconds left!"
+                PRINT "Time remaining: " + t + " seconds"
+            SET this.currentIndex = (this.currentIndex + 1) MOD this.totalQuestions
+
+CLASS Main
+    METHOD main()
+        CREATE slots = [10, 15, 12, 20]
+        CREATE timer = QuizTimer(slots)
+        CALL timer.startQuiz()

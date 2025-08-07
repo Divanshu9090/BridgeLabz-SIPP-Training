@@ -1,0 +1,34 @@
+CLASS Job
+    ATTRIBUTE name
+    ATTRIBUTE deadline
+    ATTRIBUTE processingTime
+
+    CONSTRUCTOR(name, deadline, processingTime)
+        SET this.name = name
+        SET this.deadline = deadline
+        SET this.processingTime = processingTime
+
+CLASS JobScheduler
+    ATTRIBUTE jobQueue     // Priority Queue sorted by earliest deadline, then shortest processingTime
+
+    CONSTRUCTOR()
+        CREATE this.jobQueue as new PriorityQueue
+        // Comparator: earlier deadline gets higher priority; if equal, shorter processingTime comes first
+
+    METHOD addJob(job)
+        INSERT job INTO this.jobQueue
+
+    METHOD processJobs()
+        WHILE this.jobQueue is NOT EMPTY DO
+            SET job = REMOVE FROM jobQueue
+            PRINT "Processing Job: " + job.name
+            PRINT "Deadline: " + job.deadline + ", Processing Time: " + job.processingTime
+
+CLASS Main
+    METHOD main()
+        CREATE scheduler = JobScheduler()
+        CALL scheduler.addJob(Job("JobA", 3, 10))
+        CALL scheduler.addJob(Job("JobB", 1, 5))
+        CALL scheduler.addJob(Job("JobC", 2, 8))
+        CALL scheduler.addJob(Job("JobD", 1, 3))
+        CALL scheduler.processJobs()
