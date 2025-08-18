@@ -1,4 +1,4 @@
-package LambdaExpressions.CustomSortinginECommerce;
+package com.lambdaExpressions.CustomSortinginECommerce;
 
 class Product {
     String name;

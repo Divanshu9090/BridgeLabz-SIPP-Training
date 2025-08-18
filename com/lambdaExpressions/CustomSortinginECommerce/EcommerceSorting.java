@@ -1,11 +1,11 @@
-package LambdaExpressions.CustomSortinginECommerce;
+package com.lambdaExpressions.CustomSortinginECommerce;
 
 import java.util.*;
 
 public class EcommerceSorting {
 
     public static void main(String[] args) {
-    	
+
         List<Product> products = new ArrayList<>();
         products.add(new Product("Laptop", 800.0, 4.5, 10.0));
         products.add(new Product("Smartphone", 600.0, 4.7, 5.0));
