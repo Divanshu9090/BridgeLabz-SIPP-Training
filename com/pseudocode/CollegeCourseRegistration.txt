@@ -1,0 +1,59 @@
+CLASS Student
+    ATTRIBUTE name
+    ATTRIBUTE rollNo
+
+    CONSTRUCTOR(name, rollNo)
+        SET this.name = name
+        SET this.rollNo = rollNo
+
+
+CLASS Course
+    ATTRIBUTE courseName
+    ATTRIBUTE courseCode
+
+    CONSTRUCTOR(courseName, courseCode)
+        SET this.courseName = courseName
+        SET this.courseCode = courseCode
+
+
+CLASS CourseRegistration
+    ATTRIBUTE courseMap   // Map<Course, List<Student>>
+
+    CONSTRUCTOR()
+        CREATE this.courseMap as new Map
+
+    METHOD registerStudent(course, student)
+        IF course NOT IN this.courseMap THEN
+            CREATE new List
+            SET this.courseMap[course] = new List
+        ADD student TO this.courseMap[course]
+
+    METHOD displayRegistrations()
+        FOR EACH entry IN this.courseMap DO
+            SET course = entry.key
+            SET students = entry.value
+            PRINT "Course: " + course.courseName + " (" + course.courseCode + ")"
+            FOR EACH student IN students DO
+                PRINT "   Student: " + student.name + " [Roll No: " + student.rollNo + "]"
+            PRINT "----------------------------------"
+
+
+CLASS Main
+    METHOD main()
+        CREATE regSystem = CourseRegistration()
+
+        CREATE course1 = Course("Data Structures", "CSE201")
+        CREATE course2 = Course("Operating Systems", "CSE305")
+
+        CREATE s1 = Student("Aarav", "101")
+        CREATE s2 = Student("Meera", "102")
+        CREATE s3 = Student("Rohan", "103")
+        CREATE s4 = Student("Simran", "104")
+
+        CALL regSystem.registerStudent(course1, s1)
+        CALL regSystem.registerStudent(course1, s2)
+        CALL regSystem.registerStudent(course2, s3)
+        CALL regSystem.registerStudent(course2, s4)
+        CALL regSystem.registerStudent(course1, s4)   // Same student in multiple courses
+
+        CALL regSystem.displayRegistrations()

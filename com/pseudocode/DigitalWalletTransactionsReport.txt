@@ -1,0 +1,68 @@
+CLASS Transaction
+    ATTRIBUTE id
+    ATTRIBUTE merchant
+    ATTRIBUTE amount
+    ATTRIBUTE date   // Format: YYYY-MM-DD
+
+    CONSTRUCTOR(id, merchant, amount, date)
+        SET this.id = id
+        SET this.merchant = merchant
+        SET this.amount = amount
+        SET this.date = date
+
+
+CLASS WalletReport
+    ATTRIBUTE transactions   // List<Transaction>
+
+    CONSTRUCTOR()
+        CREATE this.transactions as new List
+
+    METHOD addTransaction(transaction)
+        ADD transaction TO this.transactions
+
+    METHOD generateSummaryReport()
+        // Use Map<Merchant, Map<Month, List<Transaction>>>
+        CREATE reportMap as new Map
+
+        FOR EACH tx IN this.transactions DO
+            SET merchant = tx.merchant
+            SET month = EXTRACT_MONTH(tx.date)
+
+            IF merchant NOT IN reportMap THEN
+                SET reportMap[merchant] = new Map
+
+            IF month NOT IN reportMap[merchant] THEN
+                SET reportMap[merchant][month] = new List
+
+            ADD tx TO reportMap[merchant][month]
+
+        // Display report
+        PRINT "===== Digital Wallet Transaction Summary ====="
+        FOR EACH merchantEntry IN reportMap DO
+            SET merchantName = merchantEntry.key
+            PRINT "Merchant: " + merchantName
+
+            FOR EACH monthEntry IN merchantEntry.value DO
+                SET month = monthEntry.key
+                SET transactions = monthEntry.value
+
+                // Calculate total amount
+                SET total = 0
+                FOR EACH tx IN transactions DO
+                    total = total + tx.amount
+
+                PRINT "   Month: " + month + " | Transactions: " + SIZE(transactions) + " | Total Spent: ₹" + total
+            PRINT "--------------------------------------------"
+
+
+CLASS Main
+    METHOD main()
+        CREATE report = WalletReport()
+
+        CALL report.addTransaction(Transaction(1, "Amazon", 1200, "2025-01-15"))
+        CALL report.addTransaction(Transaction(2, "Amazon", 800, "2025-01-28"))
+        CALL report.addTransaction(Transaction(3, "Flipkart", 1500, "2025-02-03"))
+        CALL report.addTransaction(Transaction(4, "Amazon", 600, "2025-02-10"))
+        CALL report.addTransaction(Transaction(5, "Myntra", 2000, "2025-01-20"))
+
+        CALL report.generateSummaryReport()
