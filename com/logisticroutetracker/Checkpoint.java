@@ -1,36 +1,27 @@
 package com.logisticroutetracker;
 
-abstract class Checkpoint {
-    protected String checkpointId;
-    protected String locationName;
-    protected double distanceFromLast;
-    protected int expectedDuration;
-    protected int actualDuration;
+import java.io.Serializable;
 
-    public Checkpoint(String id, String location, double distance, int expected, int actual) {
-        this.checkpointId = id;
-        this.locationName = location;
-        this.distanceFromLast = distance;
-        this.expectedDuration = expected;
-        this.actualDuration = actual;
+abstract class Checkpoint implements Serializable {
+    String checkpointId;
+    String location;
+    double distance;
+    int expectedDuration;
+    int actualDuration;
+
+    public Checkpoint(String checkpointId, String location, double distance, int expectedDuration, int actualDuration) {
+        this.checkpointId = checkpointId;
+        this.location = location;
+        this.distance = distance;
+        this.expectedDuration = expectedDuration;
+        this.actualDuration = actualDuration;
+    }
+
+    public boolean isDelayed() {
+        return actualDuration > expectedDuration;
     }
 
     public abstract boolean isCritical();
     public abstract String getType();
     public abstract double calculatePenalty();
-    public boolean isDelayed() {
-        return actualDuration > expectedDuration;
-    }
-
-    public String getCheckpointId() {
-        return checkpointId;
-    }
-
-    public double getDistance() {
-        return distanceFromLast;
-    }
-
-    public String getLocationName() {
-        return locationName;
-    }
 }

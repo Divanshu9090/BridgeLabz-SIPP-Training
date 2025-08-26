@@ -1,12 +1,16 @@
 package com.logisticroutetracker;
 
-public class Driver {
-    private String driverId;
-    private String name;
-    private RouteLinkedList<Checkpoint> routeHistory;
+import java.io.Serializable;
 
-    public Driver(String id, String name) {
-        this.driverId = id;
+class Driver implements Serializable {
+    private static final long serialVersionUID = 1L;
+
+    String driverId;
+    String name;
+    RouteLinkedList<Checkpoint> routeHistory;
+
+    public Driver(String driverId, String name) {
+        this.driverId = driverId;
         this.name = name;
         this.routeHistory = new RouteLinkedList<>();
     }
@@ -16,19 +20,16 @@ public class Driver {
     }
 
     public void printSummary() {
-        System.out.println("Driver: " + driverId + " – " + name);
-        System.out.println("Route Summary:");
+        System.out.printf("Driver: %s – %s%nRoute Summary:%n", driverId, name);
         routeHistory.printRoute();
         double totalDistance = routeHistory.computeTotalDistance();
         double totalPenalty = routeHistory.computeTotalPenalty();
-        System.out.printf("Total Distance: %.1f km\n", totalDistance);
-        System.out.printf("Total Penalty: %.1f\n", totalPenalty);
-        System.out.printf("Route Score: %.1f\n", totalDistance - totalPenalty);
-        System.out.println("Critical Route Check: " +
-            (routeHistory.checkCriticalConsistency() ? "All required checkpoints present" : "Missing critical checkpoints"));
-    }
+        double routeScore = 100 - totalPenalty;
+        boolean isConsistent = routeHistory.checkCriticalConsistency();
 
-    public RouteLinkedList<Checkpoint> getRouteHistory() {
-        return routeHistory;
+        System.out.printf("Total Distance: %.1f km%n", totalDistance);
+        System.out.printf("Total Penalty: %.1f%n", totalPenalty);
+        System.out.printf("Route Score: %.1f%n", routeScore);
+        System.out.println("Critical Route Check: " + (isConsistent ? "All required checkpoints present" : "Missing critical checkpoints"));
     }
 }

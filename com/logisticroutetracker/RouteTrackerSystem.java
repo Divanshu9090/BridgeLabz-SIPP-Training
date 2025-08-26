@@ -13,7 +13,7 @@ public class RouteTrackerSystem {
 
         driver.printSummary();
 
-        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("driverData.ser"))) {
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("com/logisticroutetracker/driverData.ser"))) {
             oos.writeObject(driver);
             System.out.println("\nDriver data saved successfully.");
         } catch (IOException e) {
