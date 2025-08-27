@@ -1,7 +1,0 @@
-MAIN
-    CREATE HashMap<String, Integer> scores
-    PUT (studentName, marks)
-
-    USE streams:
-        FIND max entry by value
-        PRINT highest scorer
