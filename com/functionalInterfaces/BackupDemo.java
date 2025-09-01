@@ -1,8 +1,13 @@
+package com.functionalInterfaces;
+
 import java.io.Serializable;
 
 class Employee implements Serializable {
     String name;
-    Employee(String name) { this.name = name; }
+
+    Employee(String name) {
+        this.name = name;
+    }
 }
 
 public class BackupDemo {

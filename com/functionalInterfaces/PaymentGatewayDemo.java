@@ -1,10 +1,17 @@
+package com.functionalInterfaces;
+
 interface PaymentProcessor {
     void processPayment(double amount);
-    default void refund(double amount) { System.out.println("Refunded: " + amount); }
+
+    default void refund(double amount) {
+        System.out.println("Refunded: " + amount);
+    }
 }
 
 class PayPal implements PaymentProcessor {
-    public void processPayment(double amount) { System.out.println("PayPal processed: " + amount); }
+    public void processPayment(double amount) {
+        System.out.println("PayPal processed: " + amount);
+    }
 }
 
 public class PaymentGatewayDemo {

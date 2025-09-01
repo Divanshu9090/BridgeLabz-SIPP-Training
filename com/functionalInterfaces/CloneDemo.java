@@ -1,7 +1,15 @@
+package com.functionalInterfaces;
+
 class Prototype implements Cloneable {
     String field;
-    Prototype(String field) { this.field = field; }
-    protected Object clone() throws CloneNotSupportedException { return super.clone(); }
+
+    Prototype(String field) {
+        this.field = field;
+    }
+
+    protected Object clone() throws CloneNotSupportedException {
+        return super.clone();
+    }
 }
 
 public class CloneDemo {

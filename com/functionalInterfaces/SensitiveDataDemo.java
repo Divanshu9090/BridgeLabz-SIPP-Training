@@ -1,8 +1,14 @@
-interface SensitiveData {}
+package com.functionalInterfaces;
+
+interface SensitiveData {
+}
 
 class UserCredentials implements SensitiveData {
     String password;
-    UserCredentials(String password) { this.password = password; }
+
+    UserCredentials(String password) {
+        this.password = password;
+    }
 }
 
 public class SensitiveDataDemo {

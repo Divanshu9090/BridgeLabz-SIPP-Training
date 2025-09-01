@@ -1,14 +1,23 @@
+package com.functionalInterfaces;
+
 interface VehicleDashboard {
     void displaySpeed();
-    default void displayBattery() { System.out.println("Battery at 80%"); }
+
+    default void displayBattery() {
+        System.out.println("Battery at 80%");
+    }
 }
 
 class PetrolCar implements VehicleDashboard {
-    public void displaySpeed() { System.out.println("Speed: 60 km/h"); }
+    public void displaySpeed() {
+        System.out.println("Speed: 60 km/h");
+    }
 }
 
 class ElectricCar implements VehicleDashboard {
-    public void displaySpeed() { System.out.println("Speed: 50 km/h"); }
+    public void displaySpeed() {
+        System.out.println("Speed: 50 km/h");
+    }
 }
 
 public class DashboardDemo {

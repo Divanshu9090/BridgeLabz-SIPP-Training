@@ -1,3 +1,5 @@
+package com.functionalInterfaces;
+
 import java.util.function.Predicate;
 
 public class TemperatureAlert {
